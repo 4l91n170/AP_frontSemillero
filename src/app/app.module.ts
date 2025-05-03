@@ -5,10 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormularioDocenteComponent } from './Componentes/formulario-docente/formulario-docente.component';
+import { FormularioEstudianteComponent } from './Componentes/formulario-estudiante/formulario-estudiante.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormularioDocenteComponent,
+    FormularioEstudianteComponent,
+    
   ],
   imports: [
     BrowserModule,

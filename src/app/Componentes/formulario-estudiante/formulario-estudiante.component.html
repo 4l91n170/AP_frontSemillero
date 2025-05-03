@@ -1,0 +1,21 @@
+<div class="container-fluid w-75">
+<form [formGroup]="formularioEstudiante" (ngSubmit)='onSumbit()'>
+    <div class="row">
+        <div class="col">
+            <label for="cedula" class="form-label">Cédula</label>
+            <input type="text" class="form-control" id="cedula"  formControlName = "cedula" >
+            <div  class="text-danger" *ngIf="error('cedula','required')">Dato erroneo.</div>
+         </div>
+         
+        <div class="col">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre"  formControlName = "nombre">
+        </div>
+        <div class="mb-4">
+            <div class="col-md-6 offset-md-3 text-center">
+            <button type="submit" class="btn btn-primary" >Generar</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

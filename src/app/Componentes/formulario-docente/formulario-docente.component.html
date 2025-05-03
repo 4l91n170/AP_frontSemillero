@@ -1,0 +1,48 @@
+<div class="container-fluid w-75">
+    <form [formGroup]="formularioDocente" (ngSubmit)='onSumbit()'>
+        <!-- Campo relleno Cedula -->
+        <div class="row">
+            <div class="col">
+                <label for="cedula" class="form-label">Cédula</label>
+                <input type="text" class="form-control" id="cedula"  formControlName = "cedula" >
+                <div  class="text-danger" *ngIf="error('cedula','required')">Dato erroneo.</div>
+             </div>
+             <!-- Campo relleno Nombre -->
+            <div class="col">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre"  formControlName = "nombre">
+            </div>
+        </div>
+            <!-- Select Programa -->
+        <div class="row">
+            <div class="col">
+            <label for="programa"  class="form-label">Programa</label>
+            <select class="form-select form-select-sm" name="programa" id = "programa" formControlName = "programa">
+                <option value="programas" *ngFor="let i of Characterlist" [value]="i.name">{{i.name}}</option>
+
+            </select> 
+            <div  class="text-danger" *ngIf="error('programa','required')">Dato erroneo.</div>
+            </div>
+       
+           
+            <!-- Select Asignatura -->
+            <div class="col">
+            <label for="asignatura" class="form-label">Asignatura</label>
+            <select select class="form-select form-select-sm" aria-label="Small select example"  name="asignatura" id = "asignatura" formControlName = "asignatura">
+                <option value="asignaturas" *ngFor="let i of Characterlist" [value]="i.species">{{i.species}}</option>
+                
+            </select> 
+            <div  class="text-danger" *ngIf="error('asignatura','required')">Dato erroneo.</div>
+            </div>
+        </div>
+        <div class="d-flex gap-3 p-5">
+        <div class="col-md-6 offset-md-3 text-center">
+        <button type="submit" class="btn btn-primary">Generar</button>
+    </div>
+</div>
+    </form>
+</div>
+
+<h1></h1>
+
+    
