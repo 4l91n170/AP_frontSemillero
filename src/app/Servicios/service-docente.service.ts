@@ -1,31 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Character } from '../Models/character.model';
 import { Observable } from 'rxjs';
-import { Datos, Qr } from '../Models/datos.model';
+import { datosDocente, datosFormularioAsistencia, Qr } from '../Models/datos.model';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceDocenteService {
-  private url = 'https://rickandmortyapi.com/api/character'
+  private url = environment.url
   constructor(private _httpClient: HttpClient) {}
 
-  public getPersonajes(): Observable<Character>{
-    return this._httpClient.get<Character>(this.url);
+  public getDatosFormulario(): Observable<datosFormularioAsistencia>{
+    return this._httpClient.get<datosFormularioAsistencia>(this.url);
   }
 
-  public getPersonajesById(id: number):Observable<Character>{
-    return this._httpClient.get<Character>(`${this.url}/${id}`)
-  }
-  public postCreateQr(datos: Datos){
+   public postCreateQr(datos: datosDocente){
     return this._httpClient.post<Qr>(`${this.url}`,datos)
   }
 
   // Este es el nuevo metodo de llamar a apis en angular 19
-  // getPersonajes(){
-  //   return httpResource <Character[]> ({
-  //     url: 'https://rickandmortyapi.com/api/character',
+  // getPersonajes1(){
+  //   return httpResource<Character> ({
+  //     url: environment.url,
   //     method: 'GET'
 
   //   },{

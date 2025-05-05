@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ServiceDocenteService } from '../../Servicios/service-docente.service';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Character, Result } from '../../Models/character.model';
-import { Datos } from '../../Models/datos.model';
+import { datosDocente, datosFormularioAsistencia } from '../../Models/datos.model';
 
 @Component({
   selector: 'app-formulario-docente',
@@ -20,40 +20,30 @@ export class FormularioDocenteComponent implements OnInit {
     cedula: ['',Validators.required],
     programa: ['',Validators.required],
     asignatura: ['',Validators.required],
-    nombre: ['']
-      
-  })
-
-  this.formularioDocente.get('nombre')?.disable();
-
-}
+   
+  })}
   // Funcion error, para que detecte el sitio si esta en blanco con un click o touch
   error(controlname:string, errortype: string){
     return this.formularioDocente.get(controlname)?.hasError(errortype)&& this.formularioDocente.get(controlname)?.touched
   
   }
-  // Intento de validador de Select
- 
- 
- 
+  
   // funciones API
-  Characterlist: Result [] = []
+  Docentelist: datosDocente [] = []
   ngOnInit(): void {
-    this._serviceDocente.getPersonajes().subscribe((data: Character) =>{
+    this._serviceDocente.getDatosFormulario().subscribe((data: datosFormularioAsistencia) =>{
       console.log(data)
-      this.Characterlist = data.results
+      this.Docentelist = data.docentes
     })
   }
 
  // Funcion del boton
- datosEnviados: Datos []= [] 
+ datosEnviados: datosDocente []= [] 
  onSumbit(){
-  console.log("entro entera")
-   if(this.formularioDocente.valid){
-    console.log("entro aqui")
-     this.datosEnviados = this.formularioDocente.value
-     console.log(this.datosEnviados)
-     this.formularioDocente.reset()
+    if(this.formularioDocente.valid){
+      this.datosEnviados = this.formularioDocente.value
+      console.log(this.datosEnviados)
+      this.formularioDocente.reset()
      
    }
    else{

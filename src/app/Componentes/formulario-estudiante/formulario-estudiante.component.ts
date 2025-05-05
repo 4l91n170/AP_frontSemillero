@@ -11,10 +11,8 @@ export class FormularioEstudianteComponent {
   formularioEstudiante: FormGroup
   constructor(private form: FormBuilder){this.formularioEstudiante = this.form.group({
     cedula: ['', Validators.required],
-    nombre: ['',Validators.required]
-   })
-   this.formularioEstudiante.get('nombre')?.disable();
-  }
+    
+   })}
    error(controlname:string, errortype: string){
     return this.formularioEstudiante.get(controlname)?.hasError(errortype)&& this.formularioEstudiante.get(controlname)?.touched
     }

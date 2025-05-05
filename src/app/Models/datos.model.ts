@@ -1,10 +1,20 @@
-export interface Datos{
-    cedula: string,
-    programa: string,
-    asignatura: string,
+export interface datosFormularioAsistencia{
+    docentes: datosDocente [];
+    estudiantes: datosEstudiantes;
+    qr: Qr;
+}
+
+export interface datosDocente{
+    cedula: string;
+    programa: string;
+    asignatura: string;
     
 }
 export interface Qr{
-    id: number,
-    qr: string
+    id: number;
+    qr: string;
 }
+export interface datosEstudiantes{
+    identificacion: string;
+    idQr: string;
+    }
