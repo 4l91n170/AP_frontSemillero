@@ -1,1 +1,1 @@
-export const environment = { url: 'https://rickandmortyapi.com/api/character'};
+export const environment = { url: 'https://localhost:7198'};

@@ -1,8 +1,6 @@
-import { HttpClient, httpResource } from '@angular/common/http';
+import { HttpClient, HttpHeaders, httpResource } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Character } from '../Models/character.model';
 import { Observable } from 'rxjs';
-import { datosDocente, datosFormularioAsistencia, Qr } from '../Models/datos.model';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -12,12 +10,16 @@ export class ServiceDocenteService {
   private url = environment.url
   constructor(private _httpClient: HttpClient) {}
 
-  public getDatosFormulario(): Observable<datosFormularioAsistencia>{
-    return this._httpClient.get<datosFormularioAsistencia>(this.url);
+  public getDatosAsignatura(idPrograma: number): Observable<any>{
+   return this._httpClient.get<any>(`${this.url}/Asignatura/ConsultarAsignaturasXPrograma?IdPrograma=${idPrograma}`);
+    }
+  public getDatosPrograma(): Observable<any>{
+    return this._httpClient.get<any>(`${this.url}/Programa/GetPrograma`);
   }
-
-   public postCreateQr(datos: datosDocente){
-    return this._httpClient.post<Qr>(`${this.url}`,datos)
+  
+   public postCreateQr(datos: any){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' }); 
+    return this._httpClient.post<any>(`${this.url}/Parametrizacion/CreateQR`,datos,{headers})  
   }
 
   // Este es el nuevo metodo de llamar a apis en angular 19

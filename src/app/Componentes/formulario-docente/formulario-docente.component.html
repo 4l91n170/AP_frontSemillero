@@ -6,17 +6,17 @@
             <!-- Campo relleno Cedula -->
             <div class="row mb-3 justify-content-center">
                 <div class="col-md-5 col-7 text-center">
-                    <label for="cedula" class="form-label d-block mb-2">Cédula</label>
-                    <input type="text" class="form-control" id="cedula"  formControlName = "cedula" >
+                    <label for="cedulaProfesor" class="form-label d-block mb-2">Cédula</label>
+                    <input type="text" class="form-control" id="cedulaProfesor"  formControlName = "cedulaProfesor" >
                     <div  class="text-danger" *ngIf="error('cedula','required')">Dato erroneo.</div>
                 </div>
             </div>
                 <!-- Select Programa -->
             <div class="row mb-4">
                 <div class="col-md-6 text-center">
-                <label for="programa"  class="form-label">Programa</label>
-                <select class="form-select form-select-sm" name="programa" id = "programa" formControlName = "programa">
-                    <option value="programas" *ngFor="let i of Docentelist" [value]="i.programa">{{i.programa}}</option>
+                <label for="idPrograma"  class="form-label">Programa</label>
+                <select class="form-select form-select-sm" (change)="onProgramaChange($event)" name="idPrograma" id = "idPrograma" formControlName = "idPrograma">
+                    <option value="programas" *ngFor="let i of programasList" [value]="i.idPrograma">{{i.nombrePrograma}}</option>
 
                 </select> 
                 <div  class="text-danger" *ngIf="error('programa','required')">Dato erroneo.</div>
@@ -25,9 +25,9 @@
             
                 <!-- Select Asignatura -->
                 <div class="col-md-6 text-center">
-                <label for="asignatura" class="form-label">Asignatura</label>
-                <select select class="form-select form-select-sm" aria-label="Small select example"  name="asignatura" id = "asignatura" formControlName = "asignatura">
-                    <option value="asignaturas" *ngFor="let i of Docentelist" [value]="i.asignatura">{{i.asignatura}}</option>
+                <label for="idAsignatura" class="form-label">Asignatura</label>
+                <select select class="form-select form-select-sm" aria-label="Small select example"  name="idAsignatura" id = "idAsignatura" formControlName = "idAsignatura">
+                    <option value="asignaturas" *ngFor="let i of asignaturaList" [value]="i.idAsignatura">{{i.nombreAsignatura}}</option>
                     
                 </select> 
                 <div  class="text-danger" *ngIf="error('asignatura','required')">Dato erroneo.</div>
@@ -35,11 +35,14 @@
             </div>
             <!-- Boton Sumbit -->
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center"> 
                     <button type="submit" class="btn btn-primary px-4">Generar</button>
                 </div>
             </div>
         </form>
+            <div class="d-flex justify-content-center mt-3">
+                <qrcode *ngIf="qrCode && qrCode.length > 0"[qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>    
     </div>
 </div>
 
