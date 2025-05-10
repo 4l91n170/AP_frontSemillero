@@ -1,12 +1,12 @@
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
     <div class="card p-4 w-75">
-        <form [formGroup]="formularioEstudiante" (ngSubmit)='onSumbit()'>
+        <form [formGroup]="formularioEstudiante" (ngSubmit)='onSubmit()'>
             <div class="row">
 
                 <div class="row mb-3 justify-content-center">
                     <div class="col-md-5 col-7 text-center">
                         <label for="cedula" class="form-label d-block mb-2">Cédula</label>
-                        <input type="text" class="form-control" id="cedula"  formControlName = "cedula" >
+                        <input type="text" class="form-control" id="cedula"  formControlName = "cedulaEstudiante" >
                         <div  class="text-danger" *ngIf="error('cedula','required')">Dato erroneo.</div>
                     </div>
                 </div>
