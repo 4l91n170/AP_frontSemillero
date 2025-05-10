@@ -38,10 +38,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "C:/Users/RB/Music/app_angular/AP_frontSemillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "C:/Users/RB/Music/app_angular/AP_frontSemillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -103,12 +103,12 @@
                 "input": "public"
               }
             ],
-           "styles": [
+             "styles": [
               "src/styles.css",
-              "C:/Users/RB/Music/app_angular/AP_frontSemillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "C:/Users/RB/Music/app_angular/AP_frontSemillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           }
         }

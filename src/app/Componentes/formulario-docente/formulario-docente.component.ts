@@ -44,6 +44,7 @@ export class FormularioDocenteComponent implements OnInit {
       this.datosEnviados = this.formularioDocente.value
       console.log(this.datosEnviados)
       this.formularioDocente.reset()
+      alert("Qr generado")
      
    }
    else{

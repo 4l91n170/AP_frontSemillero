@@ -18,7 +18,7 @@ export class FormularioEstudianteComponent {
     }
     onSumbit(){
       if(this.formularioEstudiante.valid){
-  
+        alert("felicidades")
       }
     }
 }

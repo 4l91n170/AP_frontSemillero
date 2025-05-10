@@ -1,0 +1,24 @@
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#alertModal">
+  Mostrar alerta
+</button>
+
+<!-- Modal personalizado -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 bg-transparent">
+      
+      <!-- Imagen de alerta en la parte superior -->
+      <div class="text-center">
+        <img src="/Alerta.png" alt="Imagen de alerta" class="alert-img-top">
+      </div>
+
+      <!-- Cuerpo de alerta -->
+      <div class="alert-box mx-3 px-4 py-3 text-center">
+        <h2 class="alert-title">¡¡¡Alerta!!!</h2>
+        <p class="alert-message">{{textoAlerta}}</p>
+
+        <button type="button" class="btn alert-close-btn mt-3" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
