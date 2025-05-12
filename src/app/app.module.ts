@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { FormularioEstudianteComponent } from './Componentes/formulario-estudian
 import { PopAlertaComponent } from './Componentes/pop-alerta/pop-alerta.component';
 import { PopErrorComponent } from './Componentes/pop-error/pop-error.component';
 import { PopExitosoComponent } from './Componentes/pop-exitoso/pop-exitoso.component';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { PopExitosoComponent } from './Componentes/pop-exitoso/pop-exitoso.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QRCodeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
