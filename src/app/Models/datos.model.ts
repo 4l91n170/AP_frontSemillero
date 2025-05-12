@@ -25,6 +25,6 @@ export interface Qr{
     qr: string;
 }
 export interface datosEstudiantes{
-    identificacion: string;
-    idQr: string;
+    cedulaEstudiante: string;
+    idQr: any;
     }
