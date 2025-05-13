@@ -1,0 +1,45 @@
+/* Imagen de alerta grande arriba */
+.alert-img-top {
+  width: 150px;
+  margin-top: -50px;
+  z-index: 2;
+}
+
+/* Caja amarilla con bordes redondeados */
+.alert-box {
+  background-color: #eae4d4f0;
+  border-radius: 12px;
+  box-shadow: inset 0 4px 4px #f4ecce80;
+  position: relative;
+  z-index: 1;
+}
+
+/* Título grande y negrita */
+.alert-title {
+  font-size: 2rem;
+  color: #000000;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+/* Mensaje centrado */
+.alert-message {
+  color: #000000;
+  font-size: 1.1rem;
+}
+
+/* Botón rojo con sombra */
+.alert-close-btn {
+  background-color: #f44336;
+  color: white;
+  font-size: 1.25rem;
+  padding: 8px 30px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.25);
+  transition: background-color 0.3s ease;
+}
+
+.alert-close-btn:hover {
+  background-color: #d32f2f;
+}

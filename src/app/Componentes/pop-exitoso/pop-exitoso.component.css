@@ -1,0 +1,29 @@
+.custom-success-modal {
+  background-color: #faf8ef; /* Color beige claro del fondo */
+  border-radius: 15px;
+  padding-top: 40px; /* Reducido para compensar la mayor separación de la imagen */
+}
+
+.success-icon-img {
+  width: 120px;
+  position: absolute;
+  top: -80px; /* Más separación hacia arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1051;
+  padding-bottom: 10px; /* Espacio visual entre la imagen y el modal */
+}
+
+/* Mensaje centrado */
+.alert-message {
+  color: #000000;
+  font-size: 1.1rem;
+}
+
+/* Título grande y negrita */
+.alert-title {
+  font-size: 2rem;
+  color: #000000;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}

@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormularioDocenteComponent } from './Componentes/formulario-docente/formulario-docente.component';
 import { FormularioEstudianteComponent } from './Componentes/formulario-estudiante/formulario-estudiante.component';
+import { PopAlertaComponent } from './Componentes/pop-alerta/pop-alerta.component';
+import { PopErrorComponent } from './Componentes/pop-error/pop-error.component';
+import { PopExitosoComponent } from './Componentes/pop-exitoso/pop-exitoso.component';
 import { QRCodeComponent } from 'angularx-qrcode';
 
 @NgModule({
@@ -13,6 +16,9 @@ import { QRCodeComponent } from 'angularx-qrcode';
     AppComponent,
     FormularioDocenteComponent,
     FormularioEstudianteComponent,
+    PopAlertaComponent,
+    PopErrorComponent,
+    PopExitosoComponent,
     
   ],
   imports: [

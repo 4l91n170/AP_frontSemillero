@@ -1,0 +1,39 @@
+/* Contenedor principal del modal */
+.custom-error-modal {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Imagen superior */
+.error-icon-img {
+  width: 130px;
+  margin-top: -50px;
+  z-index: 10;
+  margin-bottom: 10px;
+}
+
+/* Caja interna con fondo rojo y borde redondeado */
+.error-body {
+  background-color: #eae4d4f0;
+  border-radius: 20px;
+  box-shadow: inset 0 5px 10px #f4ecce80;
+  color: #000;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+/* Mensaje centrado */
+.alert-message {
+  color: #000000;
+  font-size: 1.1rem;
+}
+
+/* Título grande y negrita */
+.alert-title {
+  font-size: 2rem;
+  color: #000000;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}

@@ -82,7 +82,9 @@ public get qrCode(): string{
           error: (err) => console.error('Error:', err)
         });
       this.formularioDocente.reset()
-       }
+      alert("Qr generado")
+     
+   }
    else{
     alert("por favor inserte los datos")
    }
