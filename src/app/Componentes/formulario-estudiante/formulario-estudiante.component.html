@@ -4,10 +4,10 @@
       <h2 class="titulo">Asistencia Estudiantes</h2>
     </div>
 
-    <form [formGroup]="formularioEstudiante" (ngSubmit)="onSumbit()">
+    <form [formGroup]="formularioEstudiante" (ngSubmit)="onSubmit()">
       <div class="mb-4 text-center">
         <label for="cedula" class="form-label">Ingrese numero de Documento</label>
-        <input type="text" id="cedula" formControlName="cedula" class="form-control w-50 mx-auto">
+        <input type="text" id="cedula" formControlName="cedulaEstudiante" class="form-control w-50 mx-auto">
         <div class="text-danger" *ngIf="error('cedula','required')">Ingrese un valor</div>
       </div>
 

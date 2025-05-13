@@ -7,8 +7,8 @@
     <form [formGroup]="formularioDocente" (ngSubmit)="onSumbit()">
       <!-- Cedula -->
       <div class="mb-4 text-center">
-        <label for="cedula" class="form-label">Cédula</label>
-        <input type="text" id="cedula" formControlName="cedula" class="form-control w-50 mx-auto">
+        <label for="cedulaProfesor" class="form-label">Cédula</label>
+        <input type="text" id="cedulaProfesor" formControlName="cedulaProfesor" class="form-control w-50 mx-auto">
         <div class="text-danger" *ngIf="error('cedula','required')">Ingrese un valor</div>
       </div>
 
@@ -16,16 +16,16 @@
       <div class="row mb-4">
         <div class="col-md-6 text-center">
           <label for="programa" class="form-label">Programa</label>
-          <select id="programa" class="form-select" formControlName="programa">
-            <option *ngFor="let i of Docentelist" [value]="i.programa">{{ i.programa }}</option>
+          <select id="programa" class="form-select" (change)="onProgramaChange($event)" formControlName="idPrograma">
+            <option *ngFor="let i of programasList" [value]="i.idPrograma">{{i.nombrePrograma}}</option>
           </select>
           <div class="text-danger" *ngIf="error('programa','required')">Ingrese un valor.</div>
         </div>
 
         <div class="col-md-6 text-center">
           <label for="asignatura" class="form-label">Asignatura</label>
-          <select id="asignatura" class="form-select" formControlName="asignatura">
-            <option *ngFor="let i of Docentelist" [value]="i.asignatura">{{ i.asignatura }}</option>
+          <select id="asignatura" class="form-select" formControlName="idAsignatura">
+            <option *ngFor="let i of asignaturaList" [value]="i.idAsignatura">{{i.nombreAsignatura}}</option>
           </select>
           <div class="text-danger" *ngIf="error('asignatura','required')">Ingrese un valor.</div>
         </div>
@@ -36,5 +36,8 @@
         <button type="submit" class="btn btn-primary px-5">Generar codigo QR</button>
       </div>
     </form>
+      <div class="d-flex justify-content-center mt-3">
+        <qrcode *ngIf="qrCode && qrCode.length > 0"[qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
   </div>
 </div>
