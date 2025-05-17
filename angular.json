@@ -38,10 +38,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -105,10 +105,10 @@
             ],
              "styles": [
               "src/styles.css",
-              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "C:/Users/arrob/Desktop/Semillero/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           }
         }
