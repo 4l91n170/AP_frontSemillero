@@ -1,24 +1,25 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PopupType, ServiceModalDocenteService } from '../../Servicios/service-modal-docente.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { PopupService, PopupType } from '../../Servicios/service-popup.service';
 import { Subscription } from 'rxjs';
 
+// Asegurarnos de que bootstrap está disponible globalmente
 declare var bootstrap: any;
+
 @Component({
   selector: 'app-pop-alerta',
   standalone: false,
   templateUrl: './pop-alerta.component.html',
   styleUrl: './pop-alerta.component.css'
 })
-export class PopAlertaComponent {
-
- textoAlerta = '';
+export class PopAlertaComponent implements OnInit, OnDestroy {
+  textoAlerta = '';
   mostrarModal = false;
   private subscription: Subscription = new Subscription();
   
-  constructor(public _serviceModalDocente: ServiceModalDocenteService) {}
+  constructor(public popupService: PopupService) {}
   
   ngOnInit() {
-    this.subscription = this._serviceModalDocente.popupState$.subscribe(state => {
+    this.subscription = this.popupService.popupState$.subscribe(state => {
       if (state.show && state.type === PopupType.ALERTA) {
         this.textoAlerta = state.message;
         this.abrirModal();
@@ -39,12 +40,8 @@ export class PopAlertaComponent {
       
       // Configurar el cierre del modal para que actualice el servicio
       modal.addEventListener('hidden.bs.modal', () => {
-        this._serviceModalDocente.hidePopup()
-      }, { once: true });
-    }
-  }
-  
+        this.popupService.hidePopup();
+      }, { once: true });
+    }
+  }
 }
-
-
-

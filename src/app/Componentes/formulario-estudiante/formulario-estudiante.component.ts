@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ServiceEstudianteService } from '../../Servicios/service-estudiante.service';
 import { datosEstudiantes } from '../../Models/datos.model';
+import { PopupService, PopupType } from '../../Servicios/service-popup.service';
 
 @Component({
   selector: 'app-formulario-estudiante',
@@ -13,8 +14,10 @@ import { datosEstudiantes } from '../../Models/datos.model';
 })
 export class FormularioEstudianteComponent implements OnInit { 
   formularioEstudiante: FormGroup;
-  private _serviceEstudianteService = inject(ServiceEstudianteService)
-  storeId: any
+  private _serviceEstudianteService = inject(ServiceEstudianteService);
+  private _popupService = inject(PopupService);
+  storeId: any;
+  
   constructor(
     private http: HttpClient, 
     private form: FormBuilder,
@@ -23,7 +26,6 @@ export class FormularioEstudianteComponent implements OnInit {
   ) {
     this.formularioEstudiante = this.form.group({
       cedulaEstudiante: ['', Validators.required],
-      
     });
   }
 idQr: string | null = null;
@@ -40,31 +42,33 @@ this.route.paramMap.subscribe(params => {
       }
      })
   }
-
-
+  
   error(controlname: string, errortype: string) {
     return this.formularioEstudiante.get(controlname)?.hasError(errortype) && this.formularioEstudiante.get(controlname)?.touched;
   }
+  
   datosEnviadosEstudiante?: datosEstudiantes 
+  
   onSubmit() {
     if (this.formularioEstudiante.valid) {
-      this.datosEnviadosEstudiante = this.formularioEstudiante.value
+      this.datosEnviadosEstudiante = this.formularioEstudiante.value;
       this.datosEnviadosEstudiante!.idQr = localStorage.getItem('estudianteIdDesdeURL');
       
       this._serviceEstudianteService.postEnviarDatos(this.datosEnviadosEstudiante).subscribe({
-        
-      next: (response: {code: number; message:string; data: datosEstudiantes}) => {
-        alert("Datos enviados correctamente")
-      },
-      error: (error) => {
-        console.error('Error al enviar datos:', error);
-      }
-    });
-      this.formularioEstudiante.reset()
+        next: (response: {code: number; message:string; data: datosEstudiantes}) => {
+          // Mostrar popup de éxito
+          this._popupService.showSuccessPopup("Asistencia registrada correctamente");
+        },
+        error: (error) => {
+          console.error('Error al enviar datos:', error);
+          // Mostrar popup de error
+          this._popupService.showErrorPopup("Error al enviar los datos: " + "Intente nuevamente");
+        }
+      });
     } else {
       this.formularioEstudiante.markAllAsTouched();
-      alert("Por favor llene los datos") // Marcar todos los campos como tocados para mostrar errores
+      // Mostrar popup de alerta para datos incompletos
+      this._popupService.showAlertPopup("Por favor llene todos los datos requeridos");
     }
   }
-
 }

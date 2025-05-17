@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { PopupService, PopupType } from '../../Servicios/service-popup.service';
 import { Subscription } from 'rxjs';
-import { PopupType, ServiceModalDocenteService } from '../../Servicios/service-modal-docente.service';
+
+// Asegurarnos de que bootstrap está disponible globalmente
 declare var bootstrap: any;
+
 @Component({
   selector: 'app-pop-error',
   standalone: false,
   templateUrl: './pop-error.component.html',
   styleUrl: './pop-error.component.css'
 })
-export class PopErrorComponent {
- textoError = '';
+export class PopErrorComponent implements OnInit, OnDestroy {
+  textoError = '';
   mostrarModal = false;
   private subscription: Subscription = new Subscription();
   
-  constructor(public _serviceModalDocente: ServiceModalDocenteService) {}
+  constructor(public popupService: PopupService) {}
   
   ngOnInit() {
-    this.subscription = this._serviceModalDocente.popupState$.subscribe(state => {
+    this.subscription = this.popupService.popupState$.subscribe(state => {
       if (state.show && state.type === PopupType.ERROR) {
         this.textoError = state.message;
         this.abrirModal();
@@ -37,7 +40,7 @@ export class PopErrorComponent {
       
       // Configurar el cierre del modal para que actualice el servicio
       modal.addEventListener('hidden.bs.modal', () => {
-        this._serviceModalDocente.hidePopup()
+        this.popupService.hidePopup();
       }, { once: true });
     }
   }
