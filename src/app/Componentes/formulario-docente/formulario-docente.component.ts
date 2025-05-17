@@ -3,6 +3,7 @@ import { ServiceDocenteService } from '../../Servicios/service-docente.service';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Asignaturas, datosDocente, datosFormularioAsistencia, Programa, Qr } from '../../Models/datos.model';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { ServiceModalDocenteService } from '../../Servicios/service-modal-docente.service';
 
 @Component({
   selector: 'app-formulario-docente',
@@ -13,6 +14,7 @@ import { QRCodeComponent } from 'angularx-qrcode';
 export class FormularioDocenteComponent implements OnInit {
   // Inyectable del servicio
   private _serviceDocente = inject(ServiceDocenteService);
+  private _serviceModal = inject(ServiceModalDocenteService)
   
   // Constructor del formulario, contiene los validadores.
   formularioDocente: FormGroup
@@ -64,6 +66,11 @@ private _qrCode: string = ""
 public get qrCode(): string{
   return this._qrCode
 }
+// Modal
+mensajeAlert: boolean = false
+tipoModal(){
+  this.mensajeAlert = true
+}
  // Funcion del boton
  datosEnviadosDocente?: datosDocente  
  onSumbit(){
@@ -77,20 +84,24 @@ public get qrCode(): string{
             if (response.code === 200 && response.data) {
               this.generacionQr = response.data.idQr
               this._qrCode = this.generacionQr
+              this._serviceModal.showSuccessPopup('Código QR Generado con Éxito')
               }
           },
-          error: (err) => console.error('Error:', err)
+           error: (error) => {
+          console.error('Error al enviar datos:', error);
+          // Mostrar popup de error
+          this._serviceModal.showErrorPopup("Error al enviar los datos: " + (error.message || "Intente nuevamente"));
+        }
+          
         });
       this.formularioDocente.reset()
-      alert("Qr generado")
+      
      
    }
    else{
-    alert("por favor inserte los datos")
-   }
+      this._serviceModal.showAlertPopup("Por favor llene todos los datos requeridos");
+       }
  }
-
-
 }
   
 

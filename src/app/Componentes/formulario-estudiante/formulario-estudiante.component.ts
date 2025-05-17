@@ -28,19 +28,19 @@ export class FormularioEstudianteComponent implements OnInit {
       cedulaEstudiante: ['', Validators.required],
     });
   }
-  
+idQr: string | null = null;
   ngOnInit(): void {
-    const urlSegments = window.location.pathname.split('/');
-    const idQr = urlSegments[1]; // Esto obtiene "12345" en /12345
-    if (idQr) {
-      localStorage.setItem('estudianteIdDesdeURL', idQr);
-      this.router.navigate(['/'], { replaceUrl: true }); 
-    } else {
-      // Aquí verificamos si ya existe 'estudianteIdDesdeURL' en localStorage
-      this.storeId = localStorage.getItem('estudianteIdDesdeURL');
-      if (this.storeId) {
+this.route.paramMap.subscribe(params => {
+      this.idQr = params.get('idQr');
+      
+      // Guardar en localStorage solo si el idQr está presente
+      if (this.idQr) {
+        localStorage.setItem('estudianteIdDesdeURL', this.idQr);
+      } else {
+        // Si no hay idQr en la URL, intentar recuperarlo del localStorage
+        this.idQr = localStorage.getItem('estudianteIdDesdeURL');
       }
-    }
+     })
   }
   
   error(controlname: string, errortype: string) {
