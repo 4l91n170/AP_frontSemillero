@@ -3,7 +3,8 @@ import { ServiceDocenteService } from '../../Servicios/service-docente.service';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Asignaturas, datosDocente, datosFormularioAsistencia, Programa, Qr } from '../../Models/datos.model';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { ServiceModalDocenteService } from '../../Servicios/service-modal-docente.service';
+import { PopupService } from '../../Servicios/service-popup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-docente',
@@ -14,11 +15,11 @@ import { ServiceModalDocenteService } from '../../Servicios/service-modal-docent
 export class FormularioDocenteComponent implements OnInit {
   // Inyectable del servicio
   private _serviceDocente = inject(ServiceDocenteService);
-  private _serviceModal = inject(ServiceModalDocenteService)
-  
+  private _servicePopUp = inject(PopupService)  
   // Constructor del formulario, contiene los validadores.
   formularioDocente: FormGroup
-  constructor(private form: FormBuilder){this.formularioDocente = this.form.group({
+  constructor(private form: FormBuilder,
+              private router: Router){this.formularioDocente = this.form.group({
     cedulaProfesor: ['',Validators.required],
     idPrograma: ['',Validators.required],
     idAsignatura: ['',Validators.required],
@@ -84,24 +85,33 @@ tipoModal(){
             if (response.code === 200 && response.data) {
               this.generacionQr = response.data.idQr
               this._qrCode = this.generacionQr
-              this._serviceModal.showSuccessPopup('Código QR Generado con Éxito')
+              this._servicePopUp.showSuccessPopup('Código QR Generado con Éxito')
               }
           },
-           error: (error) => {
-          console.error('Error al enviar datos:', error);
-          // Mostrar popup de error
-          this._serviceModal.showErrorPopup("Error al enviar los datos: " + (error.message || "Intente nuevamente"));
+          error: (error) => {
+          this.manejarError(error);  // Llamamos a la función global de manejo de errores
         }
-          
-        });
+      });
       this.formularioDocente.reset()
       
      
    }
    else{
-      this._serviceModal.showAlertPopup("Por favor llene todos los datos requeridos");
+      this._servicePopUp.showAlertPopup("Por favor llene todos los datos requeridos");
        }
  }
-}
+  manejarError(error: any) {
+    console.error('Error al enviar datos:', error);
+    let errorMessage = '';
+      if (error.error && error.error.message) {
+        errorMessage = error.error.message; // ← Aquí capturas "No existe el profesor"
+      } else {
+        errorMessage = "Solicitud incorrecta. Verifica los datos ingresados.";
+      }
+      this._servicePopUp.showAlertPopup(errorMessage);
+    }
+  
+  }
+
   
 

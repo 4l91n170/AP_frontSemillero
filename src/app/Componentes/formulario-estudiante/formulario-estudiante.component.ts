@@ -59,10 +59,8 @@ this.route.paramMap.subscribe(params => {
           // Mostrar popup de éxito
           this._popupService.showSuccessPopup("Asistencia registrada correctamente");
         },
-        error: (error) => {
-          console.error('Error al enviar datos:', error);
-          // Mostrar popup de error
-          this._popupService.showErrorPopup("Error al enviar los datos: " + "Intente nuevamente");
+       error: (error) => {
+          this.manejarError(error);  
         }
       });
     } else {
@@ -71,4 +69,16 @@ this.route.paramMap.subscribe(params => {
       this._popupService.showAlertPopup("Por favor llene todos los datos requeridos");
     }
   }
+// Función global para manejo de errores
+  manejarError(error: any) {
+    console.error('Error al enviar datos:', error);
+    let errorMessage = '';
+      if (error.error && error.error.message) {
+        errorMessage = error.error.message; 
+      } else {
+        errorMessage = "Solicitud incorrecta. Verifica los datos ingresados.";
+      }
+      this._popupService.showAlertPopup(errorMessage);
+    }
 }
+
